@@ -120,7 +120,10 @@ namespace BVNetwork.NotFound.Core.NotFoundPage
         public static void SetCurrentLanguage(HttpContextBase context)
         {
             var urlNotFound = GetUrlNotFound(context.Request);
-            SetCurrentLanguage(new Uri(urlNotFound).PathAndQuery);
+            if (!string.IsNullOrEmpty(urlNotFound))
+            {
+                SetCurrentLanguage(new Uri(urlNotFound).PathAndQuery);
+            }
         }
 
         public static string GetStatus(int statusCode)
